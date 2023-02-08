@@ -1,6 +1,5 @@
-
 -- MySQL Workbench Synchronization
--- Generated: 2023-02-06 08:58
+-- Generated: 2023-02-08 09:23
 -- Model: New Model
 -- Version: 1.0
 -- Project: Name of the project
@@ -22,24 +21,6 @@ CREATE TABLE IF NOT EXISTS `travel_search`.`air_trip` (
   `air_trip_departure2_time` TIME NOT NULL,
   PRIMARY KEY (`air_trip_id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
-
-CREATE TABLE IF NOT EXISTS `travel_search`.`city` (
-  `city_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `citiy_name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`city_id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 2
-DEFAULT CHARACTER SET = utf8mb3;
-
-CREATE TABLE IF NOT EXISTS `travel_search`.`land_trip` (
-  `land_trip_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `land_trip_name` VARCHAR(45) NULL DEFAULT NULL,
-  `land_trip_duration` INT(11) NOT NULL,
-  `land_trip_hotel1` VARCHAR(45) NOT NULL,
-  `land_trip_hotel2` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`land_trip_id`))
-ENGINE = InnoDB
 AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb3;
 
@@ -60,6 +41,25 @@ CREATE TABLE IF NOT EXISTS `travel_search`.`air_trip_has_city` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+CREATE TABLE IF NOT EXISTS `travel_search`.`city` (
+  `city_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `city_name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`city_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 13
+DEFAULT CHARACTER SET = utf8mb3;
+
+CREATE TABLE IF NOT EXISTS `travel_search`.`land_trip` (
+  `land_trip_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `land_trip_name` VARCHAR(45) NULL DEFAULT NULL,
+  `land_trip_duration` INT(11) NOT NULL,
+  `land_trip_hotel1` VARCHAR(45) NOT NULL,
+  `land_trip_hotel2` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`land_trip_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb3;
 
 CREATE TABLE IF NOT EXISTS `travel_search`.`land_trip_has_city` (
@@ -85,7 +85,6 @@ DEFAULT CHARACTER SET = utf8mb3;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
 
 use travel_search;
 
@@ -119,11 +118,9 @@ insert into air_trip values ('3', 'Africa Magic', 4, 'Madrid', '09:00:00', 'Luxo
 insert into air_trip_has_city values(1,1);
 insert into air_trip_has_city values(1,5);
 insert into air_trip_has_city values(1,6);
-
 insert into air_trip_has_city values(2,1);
 insert into air_trip_has_city values(2,8);
 insert into air_trip_has_city values(2,9);
-
 insert into air_trip_has_city values(3,1);
 insert into air_trip_has_city values(3,5);
 insert into air_trip_has_city values(3,13);

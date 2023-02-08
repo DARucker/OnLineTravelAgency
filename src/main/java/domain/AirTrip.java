@@ -102,14 +102,14 @@ public class AirTrip {
 
 	@Override
 	public String toString() {
-		return "AirTrip "
-				+ name + "; "
+		return
+				  name + "; AirTrip; "
 				+ duration + " days; "
 				+ departurCity1 + "; "
 				+ "departure time: " + departureTime1 + "; "
 				+ departurCity2 + "; "
-				+  "departure time: " + departureTime2 + "; "
-				+ airTripHasCity + "; "
+				+  "departure time: " + departureTime2 + "; visiting "
+				+ airTripHasCity
 				;
 	}
 }

@@ -18,7 +18,7 @@ public class ImplService implements Iservice{
 	private List<City> requestedCities = new ArrayList<>();
 
 
-	public void createAirTripList(String cityParameter) throws SQLException { //List<AirTrip> createAirTripList(String city) throws SQLException {
+	public void createAirTripList(String cityParameter) throws SQLException {
 
 		String city = cityParameter.toLowerCase();
 		List<City> cityList = iRepositoryAir.createCityList().stream().toList();
@@ -50,6 +50,7 @@ public class ImplService implements Iservice{
 			List<LandTrip> landTripList = iRepositoryLand.findLandTripById(landTripHasCities);
 			landTripList.forEach(x -> System.out.println(x));
 		}
+		main.wellcome();
 	}
 }
 

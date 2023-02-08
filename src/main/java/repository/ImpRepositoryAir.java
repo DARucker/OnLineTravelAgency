@@ -6,17 +6,26 @@ import domain.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+/**
+ * This class contains the implementations to interact with the database
+ * and provide the requested information about air trips
+ */
 public class ImpRepositoryAir implements IRepository{
 
     private Connector myConnection;
-    private PreparedStatement ps, ps1, ps2;
-    private ResultSet rs, rs1, rs2;
+    private PreparedStatement ps;
+    private ResultSet rs;
     private List<City> citiesList;
     private List<AirTripHasCity> airTripHasCities;
     private List<AirTrip> airTrips;
 
-
+    /**
+     * creates the complete list of cities
+     * @return list of cities
+     * @throws SQLException
+     */
     public List<City> createCityList() throws SQLException {
         citiesList = new ArrayList<>();
         myConnection = new Connector();
@@ -71,17 +80,15 @@ public class ImpRepositoryAir implements IRepository{
                 airTrip.setDeparturCity2(rs.getString("air_trip_departure_city_2"));
                 airTrip.setDepartureTime1(rs.getTime("air_trip_departure1_time").toLocalTime());
                 airTrip.setDepartureTime2(rs.getTime("air_trip_departure2_time").toLocalTime());
-                // airTripHasCities = new ArrayList<>();
+
                 airTripHasCities = findAirTripByAirTripId(rs.getInt("air_trip_id"));
                 airTrip.setAirTripHasCity(airTripHasCities);
-
 
                 airTrips.add(airTrip);
             }
         }
         return airTrips;
     }
-
 
 
     public List<AirTripHasCity> findAirTripByAirTripId(int AirTripId) throws SQLException {
@@ -94,7 +101,7 @@ public class ImpRepositoryAir implements IRepository{
             AirTripHasCity airTripHasCity = new AirTripHasCity();
             airTripHasCity.setAirTripId(rs.getInt("air_trip_id"));
             airTripHasCity.setCityId(rs.getInt("city_id"));
-            airTripHasCity.setName(citiesList.stream().filter(x -> x.getId() == airTripHasCity.getCityId()).toString());
+            airTripHasCity.setName(citiesList.stream().filter(x -> x.getId() == airTripHasCity.getCityId()).map(x -> x.getName()).collect(Collectors.joining()));
             airTripHasCities.add(airTripHasCity);
         }
         return airTripHasCities;

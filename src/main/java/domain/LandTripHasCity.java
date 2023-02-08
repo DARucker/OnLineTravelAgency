@@ -46,6 +46,7 @@ public class LandTripHasCity {
 
     @Override
     public String toString() {
-        return "Cities " + name + '\'';
+
+        return name.toUpperCase();
     }
 }

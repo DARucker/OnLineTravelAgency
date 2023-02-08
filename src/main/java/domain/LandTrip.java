@@ -9,7 +9,7 @@ public class LandTrip {
 	private int duration;
 	private String hotel1;
 	private String hotel2;
-	private List<City> citys;
+
 	private List<LandTripHasCity> landTripHasCity;
 
 	public LandTrip(int id, String name, int duration, String hotel1, String hotel2, List<LandTripHasCity> landTripHasCity) {
@@ -22,14 +22,6 @@ public class LandTrip {
 	}
 
 	public LandTrip (){}
-	
-	public List<City> getCitys() {
-		return citys;
-	}
-
-	public void setCitys(List<City> citys) {
-		this.citys = citys;
-	}
 
 	public int getId() {
 		return id;
@@ -62,18 +54,22 @@ public class LandTrip {
 		this.hotel2 = hotel2;
 	}
 
-	public void setLandTripHasCity(List<LandTripHasCity> landTripHasCities) {
+	public void setLandTripHasCity(List<LandTripHasCity> landTripHasCity) {
+		this.landTripHasCity = landTripHasCity;
+	}
+
+	public List<LandTripHasCity> getLandTripHasCity() {
+		return landTripHasCity;
 	}
 
 	@Override
 	public String toString() {
-		return "LandTrip{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", duration=" + duration +
-				", hotel1='" + hotel1 + '\'' +
-				", hotel2='" + hotel2 + '\'' +
-				", citys=" + landTripHasCity +
-				'}';
+		return name + "; LandTrip; "
+				+  duration + " days; "
+				+ "hotel1: " + hotel1
+				+ "; hotel2: " + hotel2
+				+ "; visiting "
+				+ landTripHasCity +
+				";";
 	}
 }

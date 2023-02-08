@@ -6,11 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * This class is used to generate the object with the connection with the database
+ * This class provides the connection with the database to the repositoy
  */
 public class Connector {
-	
-	
+
     private final static String url = "jdbc:mysql://localhost:3306/travel_search";
     private final static String user = "root";
     private final static String pass = "administrador";
@@ -18,13 +17,10 @@ public class Connector {
 	/**
 	 * This method returns the object of the class Connection used to make the
 	 * connection with the database
-	 * @return Connection
+	 * @return Connection containing the connection with the database, the url, user and pass.
 	 */
 	public Connection connector() throws SQLException {
-
 		Connection myConnection = DriverManager.getConnection(url, user, pass);
-
 		return myConnection;
-
 	}
 }

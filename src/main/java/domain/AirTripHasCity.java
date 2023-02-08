@@ -46,6 +46,6 @@ public class AirTripHasCity {
 
     @Override
     public String toString() {
-        return "Cities " + name + '\'';
+        return name.toUpperCase();
     }
 }

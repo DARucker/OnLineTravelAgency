@@ -8,7 +8,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+/**
+ * This class contains the implementations to interact with the database
+ * and provide the requested information about land trips
+ */
 public class ImpRepositoryLand implements IRepository{
 
     private Connector myConnection;
@@ -18,7 +23,11 @@ public class ImpRepositoryLand implements IRepository{
     private List<LandTripHasCity> landTripHasCities;
     private List<LandTrip> landTrips;
 
-
+    /**
+     * creates the complete list of cities
+     * @return list of cities
+     * @throws SQLException
+     */
     public List<City> createCityList() throws SQLException {
         citiesList = new ArrayList<>();
         myConnection = new Connector();
@@ -92,7 +101,7 @@ public class ImpRepositoryLand implements IRepository{
             LandTripHasCity landTripHasCity = new LandTripHasCity();
             landTripHasCity.setLandTripId(rs.getInt("land_trip_id"));
             landTripHasCity.setCityId(rs.getInt("city_id"));
-            landTripHasCity.setName(citiesList.stream().filter(x -> x.getId() == landTripHasCity.getCityId()).toString());
+            landTripHasCity.setName(citiesList.stream().filter(x -> x.getId() == landTripHasCity.getCityId()).map(x -> x.getName()).collect(Collectors.joining()));
             landTripHasCities.add(landTripHasCity);
         }
         return landTripHasCities;
