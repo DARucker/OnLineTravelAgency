@@ -110,8 +110,6 @@ public class ImpRepositoryAir implements IRepository{
             airTripHasCity.setName(citiesList.stream().filter(x -> x.getId() == airTripHasCity.getCityId()).map(x -> x.getName()).collect(Collectors.joining()));
             airTripHasCities.add(airTripHasCity);
         }
-        ps.close();
-        rs.close();
         return airTripHasCities;
     }
     @Override

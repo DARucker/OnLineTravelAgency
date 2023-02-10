@@ -48,8 +48,6 @@ public class ImpRepositoryLand implements IRepository{
         return Integer.valueOf(citiesList.stream().filter(x -> x.getName().contains(city)).mapToInt(x -> x.getId()).toString());
     }
 
-
-
     public List<LandTripHasCity> findLandTripByCityId(int cityId) throws SQLException {
         landTripHasCities = new ArrayList<>();
         String sql = "SELECT * from land_trip_has_city where city_id = ?";
@@ -108,8 +106,6 @@ public class ImpRepositoryLand implements IRepository{
             landTripHasCity.setName(citiesList.stream().filter(x -> x.getId() == landTripHasCity.getCityId()).map(x -> x.getName()).collect(Collectors.joining()));
             landTripHasCities.add(landTripHasCity);
         }
-        ps.close();
-        rs.close();
         return landTripHasCities;
     }
 
