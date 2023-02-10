@@ -24,7 +24,7 @@ public class ImplService implements Iservice{
 		List<City> cityList = iRepositoryAir.createCityList().stream().toList();
 		requestedCities = cityList.stream().filter(x -> x.getName().contains(city)).collect(Collectors.toList());
 		if (requestedCities.isEmpty()) {
-			System.out.println("There are o tours with any city containing " + city + ". Please try again");
+			System.out.println("There are no tours with any city containing " + city + ". Please try again");
 			App.wellcome();
 		}
 		for (City c : requestedCities) {
@@ -41,7 +41,7 @@ public class ImplService implements Iservice{
 		List<City> cityList = iRepositoryLand.createCityList().stream().toList();
 		requestedCities = cityList.stream().filter(x -> x.getName().contains(city)).collect(Collectors.toList());
 		if (requestedCities.isEmpty()) {
-			System.out.println("There are o tours with any city containing " + city + ". Please try again");
+			System.out.println("There are no tours with any city containing " + city + ". Please try again");
 			App.wellcome();
 		}
 		for (City c : requestedCities) {

@@ -48,6 +48,12 @@ public class ImpRepositoryAir implements IRepository{
         return Integer.valueOf(citiesList.stream().filter(x -> x.getName().contains(city)).mapToInt(x -> x.getId()).toString());
     }
 
+    /**
+     * This method finds all the trips where the id of the city selected by the user is present
+     * @param cityId
+     * @return an Array with the trip id where the city selected by the user is present
+     * @throws SQLException
+     */
     public List<AirTripHasCity> findAirTripByCityId(int cityId) throws SQLException {
         airTripHasCities = new ArrayList<>();
         String sql = "SELECT * from air_trip_has_city where city_id = ?";
@@ -65,6 +71,12 @@ public class ImpRepositoryAir implements IRepository{
         return airTripHasCities;
     }
 
+    /**This method receives the list of trips that contain the city chosen by the user and
+     * converts it into a new array that includes the rest of the trip data.
+     * @param airTripHasCities an array with all the trip ids where the city chosen is present
+     * @return all the information of the trips to be printed on screen
+     * @throws SQLException
+     */
     public List<AirTrip> findAirTripById(List<AirTripHasCity> airTripHasCities) throws SQLException {
 
         airTrips = new ArrayList<>();
@@ -96,7 +108,12 @@ public class ImpRepositoryAir implements IRepository{
         return airTrips;
     }
 
-
+    /**
+     * It is used to attach the complete list of cities to the trip
+     * @param AirTripId
+     * @return array with all the cities included in the trip
+     * @throws SQLException
+     */
     public List<AirTripHasCity> findAirTripByAirTripId(int AirTripId) throws SQLException {
         airTripHasCities = new ArrayList<>();
         String sql = "SELECT * from air_trip_has_city where air_trip_id = ?";

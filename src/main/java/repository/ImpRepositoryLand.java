@@ -48,6 +48,12 @@ public class ImpRepositoryLand implements IRepository{
         return Integer.valueOf(citiesList.stream().filter(x -> x.getName().contains(city)).mapToInt(x -> x.getId()).toString());
     }
 
+    /**
+     * This method finds all the trips where the id of the city selected by the user is present
+     * @param cityId
+     * @return an Array with the trip id where the city selected by the user is present
+     * @throws SQLException
+     */
     public List<LandTripHasCity> findLandTripByCityId(int cityId) throws SQLException {
         landTripHasCities = new ArrayList<>();
         String sql = "SELECT * from land_trip_has_city where city_id = ?";
@@ -65,6 +71,13 @@ public class ImpRepositoryLand implements IRepository{
         return landTripHasCities;
     }
 
+    /**
+     * This method receives the list of trips that contain the city chosen by the user and
+     * converts it into a new array that includes the rest of the trip data.
+     * @param landTripHasCities an array with all the trip ids where the city chosen is present
+     * @return all the information of the trips to be printed on screen
+     * @throws SQLException
+     */
     public List<LandTrip> findLandTripById(List<LandTripHasCity> landTripHasCities) throws SQLException {
 
         landTrips = new ArrayList<>();
@@ -93,6 +106,13 @@ public class ImpRepositoryLand implements IRepository{
         ps.close();
         return landTrips;
     }
+
+    /**
+     * It is used to attach the complete list of cities to the trip
+     * @param LandTripId
+     * @return array with all the cities included in the trip
+     * @throws SQLException
+     */
     public List<LandTripHasCity> findLandTripByLandTripId(int LandTripId) throws SQLException {
         landTripHasCities = new ArrayList<>();
         String sql = "SELECT * from land_trip_has_city where land_trip_id = ?";
