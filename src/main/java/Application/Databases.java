@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import repository.Connector;
-
 /**
  * The purpose of this class is to provide the scripts to create the database and tables
  * in case you cannot create them directly using the script file with your database
@@ -18,13 +16,18 @@ public class Databases {
 	private final static String user = "root";
 	private final static String pass = "administrador";
 
-	public static void main (String args[]){
+	public static void main (String[] args){
 		pruebas();
 	}
 
-	public static Connection connector() throws SQLException {
+	public static Connection connector() {
 
-		Connection myConnection = DriverManager.getConnection(url, user, pass);
+		Connection myConnection = null;
+		try {
+			myConnection = DriverManager.getConnection(url, user, pass);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 		return myConnection;
 	}
 

@@ -62,6 +62,8 @@ public class ImpRepositoryLand implements IRepository{
             landTripHasCity.setCityId(rs.getInt("city_id"));
             landTripHasCities.add(landTripHasCity);
         }
+        ps.close();
+        rs.close();
         return landTripHasCities;
     }
 
@@ -89,6 +91,8 @@ public class ImpRepositoryLand implements IRepository{
                 landTrips.add(landTrip);
             }
         }
+        rs.close();
+        ps.close();
         return landTrips;
     }
     public List<LandTripHasCity> findLandTripByLandTripId(int LandTripId) throws SQLException {
@@ -104,6 +108,8 @@ public class ImpRepositoryLand implements IRepository{
             landTripHasCity.setName(citiesList.stream().filter(x -> x.getId() == landTripHasCity.getCityId()).map(x -> x.getName()).collect(Collectors.joining()));
             landTripHasCities.add(landTripHasCity);
         }
+        ps.close();
+        rs.close();
         return landTripHasCities;
     }
 

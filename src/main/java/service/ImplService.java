@@ -1,6 +1,6 @@
 package service;
 
-import Application.main;
+import Application.App;
 import domain.*;
 import repository.IRepository;
 import repository.ImpRepositoryAir;
@@ -25,7 +25,7 @@ public class ImplService implements Iservice{
 		requestedCities = cityList.stream().filter(x -> x.getName().contains(city)).collect(Collectors.toList());
 		if (requestedCities.isEmpty()) {
 			System.out.println("There are o tours with any city containing " + city + ". Please try again");
-			main.wellcome();
+			App.wellcome();
 		}
 		for (City c : requestedCities) {
 			int city_id = c.getId();
@@ -42,7 +42,7 @@ public class ImplService implements Iservice{
 		requestedCities = cityList.stream().filter(x -> x.getName().contains(city)).collect(Collectors.toList());
 		if (requestedCities.isEmpty()) {
 			System.out.println("There are o tours with any city containing " + city + ". Please try again");
-			main.wellcome();
+			App.wellcome();
 		}
 		for (City c : requestedCities) {
 			int city_id = c.getId();
@@ -50,7 +50,7 @@ public class ImplService implements Iservice{
 			List<LandTrip> landTripList = iRepositoryLand.findLandTripById(landTripHasCities);
 			landTripList.forEach(x -> System.out.println(x));
 		}
-		main.wellcome();
+		App.wellcome();
 	}
 }
 

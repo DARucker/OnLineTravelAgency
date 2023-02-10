@@ -39,6 +39,8 @@ public class ImpRepositoryAir implements IRepository{
             city.setName(rs.getString("city_name").toLowerCase());
             citiesList.add(city);
         }
+        st.close();
+        rs.close();
         return citiesList;
     }
 
@@ -58,6 +60,8 @@ public class ImpRepositoryAir implements IRepository{
             airTripHasCity.setCityId(rs.getInt("city_id"));
             airTripHasCities.add(airTripHasCity);
         }
+        ps.close();
+        rs.close();
         return airTripHasCities;
     }
 
@@ -87,6 +91,8 @@ public class ImpRepositoryAir implements IRepository{
                 airTrips.add(airTrip);
             }
         }
+        ps.close();
+        rs.close();
         return airTrips;
     }
 
@@ -104,6 +110,8 @@ public class ImpRepositoryAir implements IRepository{
             airTripHasCity.setName(citiesList.stream().filter(x -> x.getId() == airTripHasCity.getCityId()).map(x -> x.getName()).collect(Collectors.joining()));
             airTripHasCities.add(airTripHasCity);
         }
+        ps.close();
+        rs.close();
         return airTripHasCities;
     }
     @Override

@@ -3,12 +3,10 @@ package Application;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import domain.AirTrip;
-import domain.LandTrip;
 import service.ImplService;
 import service.Iservice;
 
-public class main {
+public class App {
 
 	private static Scanner inputKey;
 	private static String city;
